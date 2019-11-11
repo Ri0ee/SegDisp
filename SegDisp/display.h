@@ -16,6 +16,7 @@ enum letters {
 class DisplayClass {
 public:
 	void init();
+	void asyncshow(char d1, char d2, char d3, bool dot1, bool dot2, bool dot3);
 	void show(char d1, char d2, char d3, bool dot1, bool dot2, bool dot3);
 
 private:

@@ -25,7 +25,7 @@ void DisplayClass::init()
 	symbol[F] = 142;
 }
 
-void DisplayClass::show(char d1, char d2, char d3, bool dot1, bool dot2, bool dot3) {
+void DisplayClass::asyncshow(char d1, char d2, char d3, bool dot1, bool dot2, bool dot3) {
 	unsigned long time = millis();
 	if (time - prev_time < 5) return;
 	prev_time = time;
@@ -43,6 +43,10 @@ void DisplayClass::show(char d1, char d2, char d3, bool dot1, bool dot2, bool do
 	digitalWrite(10 + display, LOW);
 
 	display = (display + 1) % 3;
+}
+
+void DisplayClass::show(char d1, char d2, char d3, bool dot1, bool dot2, bool dot3) {
+
 }
 
 
