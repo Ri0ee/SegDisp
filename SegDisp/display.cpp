@@ -26,18 +26,15 @@ void DisplayClass::init()
 }
 
 void DisplayClass::show(char d1, char d2, char d3, bool dot1, bool dot2, bool dot3) {
-	//unsigned long time = millis();
-	//if (time - prev_time < 15) return;
-	//prev_time = time;
-
-	unsigned char sym[3] = { symbol[d1], symbol[d2], symbol[d3] };
-	if (dot1) sym[0] |= 1;
-	if (dot2) sym[1] |= 1;
-	if (dot3) sym[2] |= 1;
+	unsigned char sym[3] = {
+		(dot1 ? symbol[d1] | 1 : symbol[d1]),
+		(dot2 ? symbol[d2] | 1 : symbol[d2]),
+		(dot3 ? symbol[d3] | 1 : symbol[d3]) };
 
 	for (int disp = 0; disp < 3; disp++) {
 		for (int seg = 0; seg < 8; seg++)
 			digitalWrite(2 + seg, (sym[disp] << seg & 128) / 128);
+
 		digitalWrite(10 + disp, LOW);
 		delay(5);
 		digitalWrite(10 + disp, HIGH);
